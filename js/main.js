@@ -7,9 +7,9 @@ function login(){
     e.preventDefault()
     const user = document.forms['form-login']['user'].value
     const password = document.forms['form-login']['password'].value
-    const verifyData = user === defaultUser && password === defaultPassword ? true : false
+    const verifyLogin = user === defaultUser && password === defaultPassword ? true : false
 
-    if(!verifyData){
+    if(!verifyLogin){
       formLogin.reset()
       return alert("Usuário ou senha incorretos, tente novamente!")
     }
