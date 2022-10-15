@@ -23,7 +23,7 @@ body{
   text-align: center;
   width: 100%;
   border: 2px solid #f8a000;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 20px;
 }
 
@@ -93,10 +93,17 @@ body{
   font-weight: bold;
   font-size: 1.4em;
   transition: 200ms ease-in;
+  width: 250px;
+  margin: 0 auto;
+  background-color: #881e3b;
+  color: #f8a000;
+  padding: 10px 20px;
+  border-radius: 20px;
 }
 
 .panel a:hover{
-  color: #f8a000;
+  color: #000;
+  background-color: #f8a000;
 }
 
 .hidden{
