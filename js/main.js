@@ -2,6 +2,9 @@ function login(){
   const formLogin = document.querySelector('#form-login')
   const defaultUser = 'admin'
   const defaultPassword = 'admin123'
+  const loading = document.querySelector('.loading')
+  const login = document.querySelector('.login')
+  const panel = document.querySelector('.panel')
 
   formLogin.addEventListener('submit', function(e){
     e.preventDefault()
@@ -13,7 +16,14 @@ function login(){
       formLogin.reset()
       return alert("Usuário ou senha incorretos, tente novamente!")
     }
-    document.querySelector('.login').style.display = 'none'
+    
+    loading.classList.remove('hidden')
+    login.classList.add('hidden')
+
+    setTimeout(function(){
+      panel.classList.remove('hidden')
+      loading.classList.add('hidden')
+    },600)
   })
 }
 
