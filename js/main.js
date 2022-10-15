@@ -27,4 +27,31 @@ function login(){
   })
 }
 
+function panel(){
+  const buttons = document.querySelectorAll('.panel a')
+  const registerCustomer = document.querySelector('.register-customer')
+  const listCustomer = document.querySelector('.list-customer')
+  const panel = document.querySelector('.panel')
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", function(e){
+      e.preventDefault()
+      const option = button.dataset.option
+      
+      switch(option){
+        case 'register-customer':
+          registerCustomer.classList.remove('hidden')
+          panel.classList.add('hidden')
+          break
+        case 'list-customer':
+          listCustomer.classList.remove('hidden')
+          panel.classList.add('hidden')
+      }
+    })
+  })
+
+
+}
+
 login()
+panel()
