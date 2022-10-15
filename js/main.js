@@ -1,7 +1,7 @@
 function login(){
-  const formLogin = document.querySelector('#form-login')
   const defaultUser = 'admin'
   const defaultPassword = 'admin123'
+  const formLogin = document.querySelector('#form-login')
   const loading = document.querySelector('.loading')
   const login = document.querySelector('.login')
   const panel = document.querySelector('.panel')
