@@ -61,7 +61,7 @@ function listCustomers(){
       data.forEach((customer) => {
         htmlCustomer += `
           <li>
-            ${customer.name} - ${customer.age} anos - ${customer.email}
+            ${customer.name} | ${customer.age} anos | ${customer.email}
             <a href = "#" class = "button-delete">[excluir]</a>
           </li>
         `
