@@ -1,3 +1,4 @@
+
 function login(){
   const defaultUser = 'admin'
   const defaultPassword = 'admin123'
@@ -30,7 +31,7 @@ function login(){
 function panel(){
   const buttons = document.querySelectorAll('.panel a')
   const registerCustomer = document.querySelector('.register-customer')
-  const listCustomer = document.querySelector('.list-customer')
+  const listCustomers = document.querySelector('.list-customers')
   const panel = document.querySelector('.panel')
 
   buttons.forEach((button) => {
@@ -44,14 +45,33 @@ function panel(){
           panel.classList.add('hidden')
           break
         case 'list-customer':
-          listCustomer.classList.remove('hidden')
+          listCustomers.classList.remove('hidden')
           panel.classList.add('hidden')
+          break
       }
     })
   })
+}
 
+function listCustomers(){
+  const list = document.querySelector('.customers')
+  let htmlCustomer = ''
+  fetch('http://localhost:5000/api/customers').then(response => {
+    response.json().then(data => {
+      data.forEach((customer) => {
+        htmlCustomer += `
+          <li>
+            ${customer.name} - ${customer.age} anos - ${customer.email}
+            <a href = "#" class = "button-delete">[excluir]</a>
+          </li>
+        `
+      })
 
+      list.innerHTML = htmlCustomer
+    })
+  })
 }
 
 login()
 panel()
+listCustomers()

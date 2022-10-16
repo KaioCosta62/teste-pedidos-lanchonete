@@ -8,7 +8,7 @@
   <title>Kaions Burguer</title>
 </head>
 <body>
-  <div class="container login hidden">
+  <div class="container login">
     <h1>Login</h1>
     <form action="" id="form-login" class="form-login">
       <div>
@@ -27,7 +27,8 @@
 
   <div class="loading hidden"></div>
 
-  <div class="container panel">
+  <div class="container panel hidden">
+    <h1>Painel administrativo</h1>
     <a href="#" data-option = "register-customer">Cadastrar clientes</a>
     <a href="#" data-option = "list-customer">Listar clientes</a>
     <a href="#" data-option = "register-products">Cadastrar produtos</a>
@@ -38,8 +39,9 @@
   <div class="register-customer hidden">
     <h1>Oi</h1>
   </div>
-  <div class="list-customer hidden">
-    <h1>Ola</h1>
+  <div class="container list-customers hidden">
+    <h1>Listagem de clientes</h1>
+    <ul class="customers"></ul>
   </div>
 
   <script src="js/main.js"></script>

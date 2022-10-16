@@ -14,12 +14,21 @@ body{
   padding: 0 2%;
 }
 
+ul{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+}
+
 .container{
   max-width: 800px;
 }
 
 .login,
-.panel{
+.panel,
+.list-customers{
   text-align: center;
   width: 100%;
   border: 2px solid #f8a000;
@@ -106,6 +115,26 @@ body{
   background-color: #f8a000;
 }
 
+.customers{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.customers li{
+  font-size: 1.3em;
+  color: #881e3b;
+  border-bottom: 2px solid #f8a000;
+}
+
+.list-customers h1{
+  margin-bottom: 20px;
+  color: #881e3b;
+}
+
+.customers a{
+  color: red;
+}
 .hidden{
   display: none;
 }
