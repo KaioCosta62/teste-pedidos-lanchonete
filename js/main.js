@@ -66,6 +66,7 @@ function addEventDeleteCustomer(){
         response.json().then((data) => {
           if(data.message === 'success'){
             alert("Cliente removido com sucesso")
+            listCustomers()
           }else{
             alert("Ops, houve um erro! Tente novamente!")
           }
@@ -98,26 +99,62 @@ function listCustomers(){
 function verifyCampusAddCustomers(name, age, email, password){
   let verifyError = false
 
-  if(!name){
+  const inputName = document.forms['registerCustomer']['name']
+  const regexName = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
+  const verifyName = regexName.test(name)
+  if(!verifyName){
     verifyError = true
-    alert("Preencha o campo")
+    inputName.classList.add('errorInput')
+    const span = inputName.nextElementSibling
+    span.innerHTML = 'Por favor, preencha seu nome'
+  }else{
+    inputName.classList.remove('errorInput')
+    const span = inputName.nextElementSibling
+    span.innerHTML = ''
   }
 
+
+  const inputAge = document.forms['registerCustomer']['age']
   if(!age){
     verifyError = true
-    alert("Preencha o campo")
+    inputAge.classList.add('errorInput')
+    const span = inputAge.nextElementSibling
+    span.innerHTML = 'Por favor, preencha sua idade'
+  }else{
+    inputAge.classList.remove('errorInput')
+    const span = inputAge.nextElementSibling
+    span.innerHTML = ''
   }
+  
 
-  if(!email){
+  const inputEmail = document.forms['registerCustomer']['email']
+  const regexEmail = /\S+@\S+\.\S+/
+  const verifyEmail = regexEmail.test(email)
+
+  if(!verifyEmail){
     verifyError = true
-    alert("Preencha o campo")
+    inputEmail.classList.add('errorInput')
+    const span = inputEmail.nextElementSibling
+    span.innerHTML = 'Por favor, preencha o campo de e-mail'
+  }else{
+    inputEmail.classList.remove('errorInput')
+    const span = inputEmail.nextElementSibling
+    span.innerHTML = ''
   }
 
-  if(!password){
+
+  const inputPassword = document.forms['registerCustomer']['password']
+  if(!password || password.length < 6){
     verifyError = true
-    alert("Preencha o campo")
+    inputPassword.classList.add('errorInput')
+    const span = inputPassword.nextElementSibling
+    span.innerHTML = 'Por favor, preencha o campo de senha'
+  }else{
+    inputPassword.classList.remove('errorInput')
+    const span = inputPassword.nextElementSibling
+    span.innerHTML = ''
   }
-
+  
   return verifyError
 }
 
@@ -131,7 +168,6 @@ function addCustomers(){
     const age = document.forms['registerCustomer']['age'].value
     const email = document.forms['registerCustomer']['email'].value
     const password = document.forms['registerCustomer']['password'].value
-
     const verifyForm = verifyCampusAddCustomers(name, age, email, password)
 
     
