@@ -30,7 +30,7 @@ function login(){
 
 function panel(){
   const buttons = document.querySelectorAll('.panel a')
-  const registerCustomer = document.querySelector('.register-customer')
+  const registerCustomer = document.querySelector('.register-customers')
   const listCustomers = document.querySelector('.list-customers')
   const panel = document.querySelector('.panel')
 
@@ -40,11 +40,11 @@ function panel(){
       const option = button.dataset.option
       
       switch(option){
-        case 'register-customer':
+        case 'register-customers':
           registerCustomer.classList.remove('hidden')
           panel.classList.add('hidden')
           break
-        case 'list-customer':
+        case 'list-customers':
           listCustomers.classList.remove('hidden')
           panel.classList.add('hidden')
           break
@@ -75,7 +75,6 @@ function addEventDeleteCustomer(){
   })
 }
 
-
 function listCustomers(){
   const list = document.querySelector('.customers')
   let htmlCustomer = ''
@@ -96,6 +95,76 @@ function listCustomers(){
   })
 }
 
+function verifyCampusAddCustomers(name, age, email, password){
+  let verifyError = false
+
+  if(!name){
+    verifyError = true
+    alert("Preencha o campo")
+  }
+
+  if(!age){
+    verifyError = true
+    alert("Preencha o campo")
+  }
+
+  if(!email){
+    verifyError = true
+    alert("Preencha o campo")
+  }
+
+  if(!password){
+    verifyError = true
+    alert("Preencha o campo")
+  }
+
+  return verifyError
+}
+
+function addCustomers(){
+  const formRegister = document.querySelector('#registerCustomer')
+  
+  formRegister.addEventListener("submit", function(e){
+    e.preventDefault()
+    
+    const name = document.forms['registerCustomer']['name'].value
+    const age = document.forms['registerCustomer']['age'].value
+    const email = document.forms['registerCustomer']['email'].value
+    const password = document.forms['registerCustomer']['password'].value
+
+    const verifyForm = verifyCampusAddCustomers(name, age, email, password)
+
+    
+    if(!verifyForm){
+      fetch('http://localhost:5000/api/customers', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          age,
+          email,
+          password
+        })
+      }).then((response) => {
+        response.json().then((data) => {
+          if(data.message === 'success'){
+            formRegister.reset()
+            alert("Cliente cadastrado com sucesso!")
+          }else{
+            formRegister.reset()
+            alert("Ops, ocorreu um erro! Tente novamente!")
+          }
+        })
+      })
+      
+    }
+  
+  })
+}
+
 login()
 panel()
 listCustomers()
+addCustomers()
