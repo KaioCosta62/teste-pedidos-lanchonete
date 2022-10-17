@@ -1,7 +1,7 @@
 
 function login(){
   const defaultUser = 'admin'
-  const defaultPassword = 'admin123'
+  const defaultPassword = 'administrador123'
   const formLogin = document.querySelector('#form-login')
   const loading = document.querySelector('.loading')
   const login = document.querySelector('.login')
@@ -53,6 +53,29 @@ function panel(){
   })
 }
 
+function addEventDeleteCustomer(){
+  const buttonsDelete = document.querySelectorAll(".button-delete")
+  buttonsDelete.forEach((button) => {
+    button.addEventListener("click", function(e){
+      e.preventDefault()
+      const id = this.dataset.id
+
+      fetch(`http://localhost:5000/api/customers/${id}`, {
+        method: 'DELETE'
+      }).then((response) => {
+        response.json().then((data) => {
+          if(data.message === 'success'){
+            alert("Cliente removido com sucesso")
+          }else{
+            alert("Ops, houve um erro! Tente novamente!")
+          }
+        })
+      })
+    })
+  })
+}
+
+
 function listCustomers(){
   const list = document.querySelector('.customers')
   let htmlCustomer = ''
@@ -62,12 +85,13 @@ function listCustomers(){
         htmlCustomer += `
           <li>
             ${customer.name} | ${customer.age} anos | ${customer.email}
-            <a href = "#" class = "button-delete">[excluir]</a>
+            <a href = "#" class = "button-delete"  data-id = "${customer._id}">[excluir]</a>
           </li>
         `
       })
 
       list.innerHTML = htmlCustomer
+      addEventDeleteCustomer()
     })
   })
 }
