@@ -33,6 +33,7 @@ function panel(){
   const registerCustomer = document.querySelector('.register-customers')
   const listCustomers = document.querySelector('.list-customers')
   const registerProducts = document.querySelector('.register-products')
+  const listProducts = document.querySelector('.list-products')
   const panel = document.querySelector('.panel')
 
   buttons.forEach((button) => {
@@ -53,6 +54,9 @@ function panel(){
           registerProducts.classList.remove('hidden')
           panel.classList.add('hidden')
           break
+        case 'list-products':
+          listProducts.classList.remove('hidden')
+          panel.classList.add('hidden')
       }
     })
   })
@@ -205,7 +209,27 @@ function addCustomers(){
   })
 }
 
+function listProducts(){
+  const list = document.querySelector('.products')
+  let htmlProduct = ''
+
+  fetch('http://localhost:5000/api/products').then((resolve) => {
+    resolve.json().then((data) => {
+      data.forEach((product) => {
+        htmlProduct += `
+        <li>
+         ${product.name} | R$ ${product.price} | ${product.description}
+        </li>     
+        `
+      })
+
+      list.innerHTML = htmlProduct
+    })
+  })
+}
+
 login()
 panel()
 listCustomers()
 addCustomers()
+listProducts()

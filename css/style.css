@@ -30,7 +30,8 @@ a{
 .panel,
 .list-customers,
 .register-customers,
-.register-products{
+.register-products,
+.list-products{
   text-align: center;
   width: 100%;
   border: 2px solid #f8a000;
@@ -131,13 +132,15 @@ button:hover{
   background-color: #f8a000;
 }
 
-.customers{
+.customers,
+.products{
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-.customers li{
+.customers li,
+.products li{
   font-size: 1.3em;
   color: #881e3b;
   border-bottom: 2px solid #f8a000;
@@ -145,13 +148,10 @@ button:hover{
 
 .list-customers h1,
 .register-customers h1,
-.register-products{
+.register-products h1,
+.list-products h1{
   margin-bottom: 20px;
   color: #881e3b;
-}
-
-.customers a{
-  color: red;
 }
 
 .register-customers form,
@@ -180,6 +180,9 @@ input.errorInput{
   border: 3px solid red;
 }
 
+a{
+  color: red;
+}
 @keyframes loading {
   from{
     transform: rotate(360deg);
