@@ -209,6 +209,28 @@ function addCustomers(){
   })
 }
 
+function addEventDeleteProduct(){
+  const buttonsDelete = document.querySelectorAll('.list-products a')
+  buttonsDelete.forEach((button) => {
+    button.addEventListener("click", function(e){
+      e.preventDefault()
+      const id = this.dataset.id
+      fetch(`http://localhost:5000/api/products/${id}`, {
+        method: 'DELETE'
+      }).then((response) => {
+        response.json().then((data) => {
+          if(data.message === 'success'){
+            alert("Produto removido com sucesso")
+            listProducts()
+          }else{
+            alert("Ops, ocorreu um erro! Tente novamente!")
+          }
+        })
+      })
+    })
+  })
+}
+
 function listProducts(){
   const list = document.querySelector('.products')
   let htmlProduct = ''
@@ -219,15 +241,16 @@ function listProducts(){
         htmlProduct += `
         <li>
          ${product.name} | R$ ${product.price} | ${product.description}
+         <a href = "#" class = "button-delete" data-id = "${product._id}">[excluir]</a>
         </li>     
         `
       })
 
       list.innerHTML = htmlProduct
+      addEventDeleteProduct()
     })
   })
 }
-
 
 function verifyCampusAddProducts(name, price, description){
   let verifyError = false
