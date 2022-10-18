@@ -228,8 +228,90 @@ function listProducts(){
   })
 }
 
+
+function verifyCampusAddProducts(name, price, description){
+  let verifyError = false
+
+  const inputName = document.forms['registerProducts']['name']
+  const regexName = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
+  const verifyName = regexName.test(name)
+  if(!verifyName){
+    verifyError = true
+    inputName.classList.add('errorInput')
+    const span = inputName.nextElementSibling
+    span.innerHTML = 'Insira o nome do produto'
+  }else{
+    inputName.classList.remove('errorInput')
+    const span = inputName.nextElementSibling
+    span.innerHTML = ''
+  }
+
+  const inputPrice = document.forms['registerProducts']['price']
+  if(!price){
+    verifyError = true
+    inputPrice.classList.add('errorInput')
+    const span = inputPrice.nextElementSibling
+    span.innerHTML = 'Insira o preço do produto'
+  }else{
+    inputPrice.classList.remove('errorInput')
+    const span = inputPrice.nextElementSibling
+    span.innerHTML = ''
+  }
+
+  const inputDescription = document.forms['registerProducts']['description']
+  if(!description){
+    verifyError = true
+    inputDescription.classList.add('errorInput')
+    const span = inputDescription.nextElementSibling
+    span.innerHTML = 'Insira a descrição do produto'
+  }else{
+    inputDescription.classList.remove('errorInput')
+    const span = inputDescription.nextElementSibling
+    span.innerHTML = ''
+  }
+
+  return verifyError
+}
+
+function addProducts(){
+  const formRegister = document.querySelector('#registerProducts')
+  
+  formRegister.addEventListener("submit", function(e){
+    e.preventDefault()
+
+    const name = document.forms['registerProducts']['name'].value
+    const price = document.forms['registerProducts']['price'].value
+    const description = document.forms['registerProducts']['description'].value
+    const verifyForm = verifyCampusAddProducts(name, price, description)
+
+    if(!verifyForm){
+      fetch('http://localhost:5000/api/products', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          price,
+          description
+        })
+      }).then((response) => {
+        response.json().then((data) => {
+          if(data.message === 'success'){
+            formRegister.reset()
+            alert("Produto cadastrado com sucesso")
+          }else{
+            alert("Ops, não foi possível cadastrar o produto! Tente novamente!")
+          }
+        })
+      })
+    }
+  })
+}
+
 login()
 panel()
 listCustomers()
 addCustomers()
 listProducts()
+addProducts()
