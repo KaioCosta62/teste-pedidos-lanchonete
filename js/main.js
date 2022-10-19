@@ -305,7 +305,7 @@ function verifyCampusAddProducts(name, price, description){
 
 function addProducts(){
   const formRegister = document.querySelector('#registerProducts')
-  
+
   formRegister.addEventListener("submit", function(e){
     e.preventDefault()
 
@@ -339,9 +339,34 @@ function addProducts(){
   })
 }
 
+function listRequests(){
+  const list = document.querySelector('.requests')
+  let htmlRequest = ''
+
+  fetch('http://localhost:5000/api/requests').then((response) => {
+    response.json().then((data) => {
+      data.forEach((request) => {
+        htmlRequest += `
+          <li> 
+            <p>Nome: ${request.name}</p>
+            <p>Endereço: ${request.address}</p>
+            <p>Telefone: ${request.phone}</p>
+            <p>Pedido: ${request.product}</p>
+            <p>Preço: R$ ${request.price}</p>
+            <p>Status do pedido: ${request.status}</p>
+            <a href = "#">[alterar status do pedido]</a>
+          </li>
+        `
+      })
+      list.innerHTML = htmlRequest
+    })
+  })
+}
+
 login()
 panel()
 listCustomers()
 addCustomers()
 listProducts()
 addProducts()
+listRequests()
