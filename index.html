@@ -8,164 +8,191 @@
   <title>Kaions Burguer</title>
 </head>
 <body>
-  <div class="container login">
-    <h1>Login</h1>
-    <form action="" id="form-login" class="form-login">
-      <div>
-        <label>Usuário:</label>
-        <input type="text" placeholder="Digite o usuário" name="user">
-      </div>
-      <div>
-        <label>Senha:</label>
-        <input type="password" placeholder="Digite a senha" name="password">
-      </div>
-      <div>
-        <button type="submit">Entrar</button>
-      </div>
-    </form>
-  </div>
-
-  <div class="loading hidden"></div>
-
-  <div class="container panel hidden">
-    <h1>Painel administrativo</h1>
-    <a href="#" data-option = "register-customers">Cadastrar clientes</a>
-    <a href="#" data-option = "list-customers">Listar clientes</a>
-    <a href="#" data-option = "register-products">Cadastrar produtos</a>
-    <a href="#" data-option = "list-products">Listar produtos</a>
-    <a href="#" data-option = "register-requests">Cadastrar pedidos</a>
-    <a href="#" data-option = "list-requests">Listar pedidos</a>
-  </div>
-
-  <div class="container register-customers hidden">
-    <h1>Cadastrar Clientes</h1>
-    <form action="" id="registerCustomer">
-      <div>
-        <label>Nome</label>
-        <input type="text" name="name" id="" placeholder="Digite seu nome">
-        <span></span>
-      </div>
-      <div>
-        <label>Idade</label>
-        <input type="text" name="age" id="" placeholder="Digite sua idade" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-        <span></span>
-      </div>
-      <div>
-        <label>Email</label>
-        <input type="email" name="email" id="" placeholder="Digite seu email">
-        <span></span>
-      </div>
-      <div>
-        <label>Senha</label>
-        <input type="password" name="password" id="" placeholder="Digite sua senha (No mínimo 6 caracteres)">
-        <span></span>
-      </div>
-      <div>
-        <button type="submit">Cadastrar</button>
-      </div>
-    </form>
-  </div>
   
-  <div class="container list-customers hidden">
-    <h1>Listagem de clientes</h1>
-    <ul class="customers"></ul>
-  </div>
+  <header class="hidden">
+    <h2>Lanchonete do Kaio</h2>
+    <nav>
+      <ul>
+        <li>
+          <a href="#" data-option = "register-customers">Registrar Cliente</a>
+        </li>
+        <li>
+          <a href="#"  data-option = "list-customers">Listar Cliente</a>
+        </li>
+        <li>
+          <a href="#" data-option = "register-products">Registrar Produtos</a>
+        </li>
+        <li>
+          <a href="#" data-option = "list-products">Listar Produtos</a>
+        </li>
+        <li>
+          <a href="#" data-option = "register-requests">Registrar Pedidos</a>
+        </li>
+        <li>
+          <a href="#" data-option = "list-requests">Listar Pedidos</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-  <div class="container register-products hidden">
-    <h1>Cadastrar Produtos</h1>
-    <form action="" id="registerProducts">
-      <div>
-        <label>Nome</label>
-        <input type="text" name="name" id="" placeholder="Digite o nome do produto">
-        <span></span>
-      </div>
-      <div>
-        <label>Preço</label>
-        <input type="text" name="price" id="" placeholder="Digite o preço do produto">
-        <span></span>
-      </div>
-      <div>
-        <label>Descrição</label>
-        <input type="text" name="description" id="" placeholder="Digite a descrição do produto">
-        <span></span>
-      </div>
-      <div>
-        <button type="submit">Cadastrar</button>
-      </div>
-    </form>
-  </div>
+  <div class="lanchonete">
+    <div class="container login">
+      <h1>Login</h1>
+      <form action="" id="form-login" class="form-login">
+        <div>
+          <label>Usuário:</label>
+          <input type="text" placeholder="Digite o usuário" name="user">
+        </div>
+        <div>
+          <label>Senha:</label>
+          <input type="password" placeholder="Digite a senha" name="password">
+        </div>
+        <div>
+          <button type="submit">Entrar</button>
+        </div>
+      </form>
+    </div>
 
-  <div class="container list-products hidden">
-    <h1>Listagem de Produtos</h1>
-    <ul class="products"></ul>
-  </div>
+    <div class="loading hidden"></div>
+     
+    <div class="container register-customers hidden">
+      <h1>Cadastrar Clientes</h1>
+      <form action="" id="registerCustomer">
+        <div>
+          <label>Nome</label>
+          <input type="text" name="name" id="" placeholder="Digite seu nome">
+          <span></span>
+        </div>
+        <div>
+          <label>Idade</label>
+          <input type="text" name="age" id="" placeholder="Digite sua idade" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+          <span></span>
+        </div>
+        <div>
+          <label>Email</label>
+          <input type="email" name="email" id="" placeholder="Digite seu email">
+          <span></span>
+        </div>
+        <div>
+          <label>Senha</label>
+          <input type="password" name="password" id="" placeholder="Digite sua senha (No mínimo 6 caracteres)">
+          <span></span>
+        </div>
+        <div>
+          <button type="submit">Cadastrar</button>
+        </div>
+      </form>
+      <button class="exit">Fechar</button>
+    </div>
 
-  <div class="container register-requests hidden">
-    <h1>Cadastrar Pedidos</h1>
-    <form action="" id="registerRequests" class="registerRequests">
-      <div>
-        <label>Nome</label>
-        <input type="text" name="name" id="" placeholder="Digite o seu nome">
-        <span></span>
-      </div>
-      <div>
-        <label>Endereço</label>
-        <input type="text" name="address" id="" placeholder="Digite o seu endereço">
-        <span></span>
-      </div>
-      <div>
-        <label>Telefone</label>
-        <input type="text" name="phone" id="" placeholder="Digite o seu telefone de contato">
-        <span></span>
-      </div>
-      <div>
-        <label>Pedido</label>
-        <input type="text" name="product" id="" placeholder="Digite seu pedido">
-        <span></span>
-      </div>
-      <div>
-        <label>Preço</label>
-        <input type="text" name="price" id="" placeholder="Preço total">
-        <span></span>
-      </div>
-      <div>
-        <label>Status do Pedido</label>
+      
+    <div class="container list-customers hidden">
+      <h1>Listagem de clientes</h1>
+      <ul class="customers"></ul>
+      <button href = "#" class="exit">Fechar</button>
+    </div>
+
+    <div class="container register-products hidden">
+      <h1>Cadastrar Produtos</h1>
+      <form action="" id="registerProducts">
+        <div>
+          <label>Nome</label>
+          <input type="text" name="name" id="" placeholder="Digite o nome do produto">
+          <span></span>
+        </div>
+        <div>
+          <label>Preço</label>
+          <input type="text" name="price" id="" placeholder="Digite o preço do produto">
+          <span></span>
+        </div>
+        <div>
+          <label>Descrição</label>
+          <input type="text" name="description" id="" placeholder="Digite a descrição do produto">
+          <span></span>
+        </div>
+        <div>
+          <button type="submit">Cadastrar</button>
+        </div>
+      </form>
+      <button href = "#" class="exit">Fechar</button>
+    </div>
+
+    <div class="container list-products hidden">
+      <h1>Listagem de Produtos</h1>
+      <ul class="products"></ul>
+      <button href = "#" class="exit">Fechar</button>
+    </div>
+
+    <div class="container register-requests hidden">
+      <h1>Cadastrar Pedidos</h1>
+      <form action="" id="registerRequests" class="registerRequests">
+        <div>
+          <label>Nome</label>
+          <input type="text" name="name" id="" placeholder="Digite o seu nome">
+          <span></span>
+        </div>
+        <div>
+          <label>Endereço</label>
+          <input type="text" name="address" id="" placeholder="Digite o seu endereço">
+          <span></span>
+        </div>
+        <div>
+          <label>Telefone</label>
+          <input type="text" name="phone" id="" placeholder="Digite o seu telefone de contato">
+          <span></span>
+        </div>
+        <div>
+          <label>Pedido</label>
+          <input type="text" name="product" id="" placeholder="Digite seu pedido">
+          <span></span>
+        </div>
+        <div>
+          <label>Preço</label>
+          <input type="text" name="price" id="" placeholder="Preço total">
+          <span></span>
+        </div>
+        <div>
+          <label>Status do Pedido</label>
+          <select name="statusRequest" id="">
+            <option value="processando">Processando</option>
+            <option value="em-construção">Em construção</option>
+            <option value="saindo-para-entrega">Saindo para entrega</option>
+            <option value="entrega-efetuada">Entrega efetuada</option>
+          </select>
+          <span></span>
+        </div>
+        <div>
+          <button type="submit">Cadastrar Pedido</button>
+        </div>
+      </form>
+      <button href = "#" class="exit">Fechar</abutton>
+    </div>
+
+    <div class="container list-requests hidden">
+      <h1>Listagem de Pedidos</h1>
+      <ul class="requests">
+      </ul>
+      <button href = "#" class="exit">Fechar</button>
+    </div>
+
+    <div class="container edit-status-request hidden">
+      <h1>Editar status do pedido</h1>
+      <input type="hidden" name="id">
+      <form action="" class="formEdit" id="formEdit">
+        <input type="hidden" name="id">
         <select name="statusRequest" id="">
           <option value="processando">Processando</option>
           <option value="em-construção">Em construção</option>
           <option value="saindo-para-entrega">Saindo para entrega</option>
           <option value="entrega-efetuada">Entrega efetuada</option>
         </select>
-        <span></span>
-      </div>
-      <div>
-        <button type="submit">Cadastrar Pedido</button>
-      </div>
-    </form>
+        <div>
+          <button type="submit" class="btn-edit">Alterar Status do Pedido</button>
+        </div>
+      </form>
+    </div>
   </div>
-
-  <div class="container list-requests hidden">
-    <h1>Listagem de Pedidos</h1>
-    <ul class="requests">
-    </ul>
-  </div>
-
-  <div class="container edit-status-request hidden ">
-    <h1>Editar status do pedido</h1>
-    <input type="hidden" name="id">
-    <form action="" class="formEdit" id="formEdit">
-      <input type="hidden" name="id">
-      <select name="statusRequest" id="">
-        <option value="processando">Processando</option>
-        <option value="em-construção">Em construção</option>
-        <option value="saindo-para-entrega">Saindo para entrega</option>
-        <option value="entrega-efetuada">Entrega efetuada</option>
-      </select>
-      <div>
-        <button type="submit" class="btn-edit">Alterar Status do Pedido</button>
-      </div>
-    </form>
-  </div>
+  
   <script src="js/main.js"></script>
 </body>
 </html>

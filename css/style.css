@@ -4,13 +4,32 @@
   box-sizing: border-box;
 }
 
-body{
+header{
+  background-color: #ededed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+header ul{
+  display: flex;
+  gap: 30px;
+}
+
+header a{
+  font-size: 1.3em;
+  color: #000;
+}
+
+
+.lanchonete{
   width: 100%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, Helvetica, sans-serif;
   padding: 20px 2%;
 }
 
@@ -20,6 +39,8 @@ ul{
 
 a{
   text-decoration: none;
+  color: red;
+  display: block;
 }
 
 .container{
@@ -33,7 +54,8 @@ a{
 .register-products,
 .list-products,
 .register-requests,
-.list-requests{
+.list-requests,
+.edit-status-request{
   text-align: center;
   width: 100%;
   border: 2px solid #f8a000;
@@ -75,7 +97,11 @@ a{
 .register-products input,
 .register-products button,
 .register-requests input,
-.register-requests button{
+.register-requests button,
+.edit-status-request button,
+.list-customers button,
+.list-products button,
+.list-requests button{
   width: 100%;
   height: 40px;
   padding-left: 10px;
@@ -86,7 +112,11 @@ a{
 .form-login button,
 .register-customers button,
 .register-products button,
-.register-requests button{
+.register-requests button,
+.edit-status-request button,
+.list-customers button,
+.list-products button,
+.list-requests button{
   margin-top: 15px;
   text-transform: uppercase;
   font-size: 1.2em;
@@ -159,14 +189,16 @@ button:hover{
 .register-products h1,
 .list-products h1,
 .register-requests h1,
-.list-requests h1{
+.list-requests h1,
+.edit-status-request h1{
   margin-bottom: 20px;
   color: #881e3b;
 }
 
 .register-customers form,
 .register-products form,
-.register-requests form{
+.register-requests form,
+.edit-status-request form{
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -184,7 +216,8 @@ button:hover{
   margin-bottom: 10px;
 }
 
-.register-requests select{
+.register-requests select,
+.edit-status-request select{
   width: 100%;
   height: 40px;
   border: 3px solid #f8a000;
@@ -208,9 +241,14 @@ input.errorInput{
   border: 3px solid red;
 }
 
-a{
-  color: red;
+.exit{
+  margin-top: 30px;
+  font-size: 1.3em;
+  color: #881e3b;
+  font-weight: bold;
 }
+
+
 @keyframes loading {
   from{
     transform: rotate(360deg);

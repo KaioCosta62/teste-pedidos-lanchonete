@@ -6,8 +6,7 @@ function login(){
   const formLogin = document.querySelector('#form-login')
   const loading = document.querySelector('.loading')
   const login = document.querySelector('.login')
-  const panel = document.querySelector('.panel')
-
+  const menu = document.querySelector('header')
   formLogin.addEventListener('submit', function(e){
     e.preventDefault()
     const user = document.forms['form-login']['user'].value
@@ -23,7 +22,7 @@ function login(){
     login.classList.add('hidden')
 
     setTimeout(function(){
-      panel.classList.remove('hidden')
+      menu.classList.remove('hidden')
       loading.classList.add('hidden')
     },600)
   })
@@ -31,14 +30,13 @@ function login(){
 
 // Painel administrativo
 function panel(){
-  const buttons = document.querySelectorAll('.panel a')
+  const buttons = document.querySelectorAll('header a')
   const registerCustomer = document.querySelector('.register-customers')
   const listCustomers = document.querySelector('.list-customers')
   const registerProducts = document.querySelector('.register-products')
   const listProducts = document.querySelector('.list-products')
   const registerRequests = document.querySelector('.register-requests')
   const listRequests = document.querySelector('.list-requests')
-  const panel = document.querySelector('.panel')
 
   buttons.forEach((button) => {
     button.addEventListener("click", function(e){
@@ -48,27 +46,21 @@ function panel(){
       switch(option){
         case 'register-customers':
           registerCustomer.classList.remove('hidden')
-          panel.classList.add('hidden')
           break
         case 'list-customers':
           listCustomers.classList.remove('hidden')
-          panel.classList.add('hidden')
           break
         case 'register-products':
           registerProducts.classList.remove('hidden')
-          panel.classList.add('hidden')
           break
         case 'list-products':
           listProducts.classList.remove('hidden')
-          panel.classList.add('hidden')
           break
         case 'register-requests':
           registerRequests.classList.remove('hidden')
-          panel.classList.add('hidden')
           break
         case 'list-requests':
           listRequests.classList.remove('hidden')
-          panel.classList.add('hidden')
           break
 
       }
@@ -212,6 +204,7 @@ function addCustomers(){
           if(data.message === 'success'){
             formRegister.reset()
             alert("Cliente cadastrado com sucesso!")
+            listCustomers()
           }else{
             formRegister.reset()
             alert("Ops, ocorreu um erro! Tente novamente!")
@@ -342,6 +335,7 @@ function addProducts(){
           if(data.message === 'success'){
             formRegister.reset()
             alert("Produto cadastrado com sucesso")
+            listProducts()
           }else{
             alert("Ops, não foi possível cadastrar o produto! Tente novamente!")
           }
@@ -543,8 +537,8 @@ function editStatus(){
       response.json().then((data) => {
         if(data.message === 'success'){
           alert("Produto alterado com sucesso")
-          editStatus.classList.add('hidden')
           listRequests.classList.remove('hidden')
+          editStatus.classList.add('hidden')
           listRequests()
         }else{
           alert("Ops, houve um erro! Tente novamente!")
@@ -555,6 +549,17 @@ function editStatus(){
   })
 }
 
+function exit(){
+  const buttonsExit = document.querySelectorAll('.exit')
+  
+  buttonsExit.forEach((button) => {
+    button.addEventListener("click", function(e){
+      e.preventDefault()
+      const parentElement = button.parentElement
+      parentElement.classList.add('hidden')
+    })
+  })
+}
 login()
 panel()
 listCustomers()
@@ -564,3 +569,4 @@ addProducts()
 listRequests()
 addRequests()
 editStatus()
+exit()
