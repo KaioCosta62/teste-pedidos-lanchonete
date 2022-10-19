@@ -214,7 +214,7 @@ function addEventDeleteProduct(){
   buttonsDelete.forEach((button) => {
     button.addEventListener("click", function(e){
       e.preventDefault()
-      const id = this.dataset.id
+      const id = button.dataset.id
       fetch(`http://localhost:5000/api/products/${id}`, {
         method: 'DELETE'
       }).then((response) => {
