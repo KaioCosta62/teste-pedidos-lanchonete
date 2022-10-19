@@ -363,6 +363,130 @@ function listRequests(){
   })
 }
 
+function verifyCampusAddRequests(name, address, phone, request, price, status){
+  let verifyError = false
+
+  const inputName = document.forms['registerRequests']['name']
+  const regexName = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
+  const verifyName = regexName.test(name)
+
+  if(!verifyName){
+    verifyError = true
+    inputName.classList.add('errorInput')
+    const span = inputName.nextElementSibling
+    span.innerHTML = 'Insira o seu nome'
+  }else{
+    inputName.classList.remove('errorInput')
+    const span = inputName.nextElementSibling
+    span.innerHTML = ''
+  }
+
+  const inputAddress = document.forms['registerRequests']['address']
+  if(!address){
+    verifyError = true
+    inputAddress.classList.add('errorInput')
+    const span = inputAddress.nextElementSibling
+    span.innerHTML = 'Insira o seu endereço'
+  }else{
+    inputAddress.classList.remove('errorInput')
+    const span = inputAddress.nextElementSibling
+    span.innerHTML = ''
+  }
+
+  const inputPhone = document.forms['registerRequests']['phone']
+  if(!phone){
+    verifyError = true
+    inputPhone.classList.add('errorInput')
+    const span = inputPhone.nextElementSibling
+    span.innerHTML = 'Insira o seu telefone de contato'
+  }else{
+    inputPhone.classList.remove('errorInput')
+    const span = inputPhone.nextElementSibling
+    span.innerHTML = ''
+  }
+
+  const inputRequest =  document.forms['registerRequests']['product']
+  if(!request){
+    verifyError = true
+    inputRequest.classList.add('errorInput')
+    const span = inputRequest.nextElementSibling
+    span.innerHTML = 'Insira o seu pedido'
+  }else{
+    inputRequest.classList.remove('errorInput')
+    const span = inputRequest.nextElementSibling
+    span.innerHTML = ''
+  }
+
+  const inputPrice = document.forms['registerRequests']['price']
+  if(!price){
+    verifyError = true
+    inputPrice.classList.add('errorInput')
+    const span = inputPrice.nextElementSibling
+    span.innerHTML = 'Insira o valor do pedido'
+  }else{
+    inputPrice.classList.remove('errorInput')
+    const span = inputPrice.nextElementSibling
+    span.innerHTML = ''
+  }
+
+  const inputStatus = document.forms['registerRequests']['statusRequest']
+  if(!status){
+    verifyError = true
+    inputStatus.classList.add('errorInput')
+    const span = inputStatus.nextElementSibling
+    span.innerHTML = 'Insira o status do pedido'
+  }else{
+    inputStatus.classList.remove('errorInput')
+    const span = inputStatus.nextElementSibling
+    span.innerHTML = ''
+  }
+
+  return verifyError
+}
+
+function addRequests(){
+  const formRegister = document.querySelector('.registerRequests')
+  
+  formRegister.addEventListener("submit", function(e){
+    e.preventDefault()
+
+    const name = document.forms['registerRequests']['name'].value
+    const address = document.forms['registerRequests']['address'].value
+    const product = document.forms['registerRequests']['product'].value
+    const phone = document.forms['registerRequests']['phone'].value
+    const price = document.forms['registerRequests']['price'].value
+    const status = document.forms['registerRequests']['statusRequest'].value
+    const verifyForm = verifyCampusAddRequests(name, address, phone, product, price, status)
+
+    console.log(verifyForm)
+    if(!verifyForm){
+      fetch('http://localhost:5000/api/requests', {
+        method: 'POST',
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          address,
+          phone,
+          product,
+          price,
+          status
+        })
+      }).then((response) => {
+        response.json().then((data) => {
+          if(data.message === 'success'){
+            formRegister.reset()
+            alert("Pedido cadastrado com sucesso!")
+          }else{
+            alert("Ops, ocorreu um erro! Tente novamente!")
+          }
+        })
+      })
+    }
+  })
+}
+
 login()
 panel()
 listCustomers()
@@ -370,3 +494,4 @@ addCustomers()
 listProducts()
 addProducts()
 listRequests()
+addRequests()
