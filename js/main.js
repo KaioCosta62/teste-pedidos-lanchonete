@@ -63,6 +63,7 @@ function panel(){
           registerRequests.classList.remove('hidden')
           panel.classList.add('hidden')
           break
+          
       }
     })
   })
