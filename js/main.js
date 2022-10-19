@@ -43,6 +43,7 @@ function panel(){
       e.preventDefault()
       const option = button.dataset.option
       
+      
       switch(option){
         case 'register-customers':
           registerCustomer.classList.remove('hidden')
@@ -64,6 +65,7 @@ function panel(){
           break
 
       }
+    
     })
   })
 }
@@ -232,8 +234,8 @@ function addEventDeleteProduct(){
       }).then((response) => {
         response.json().then((data) => {
           if(data.message === 'success'){
-            alert("Produto removido com sucesso")
             listProducts()
+            alert("Produto removido com sucesso")         
           }else{
             alert("Ops, ocorreu um erro! Tente novamente!")
           }
