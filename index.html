@@ -149,6 +149,23 @@
     <ul class="requests">
     </ul>
   </div>
+
+  <div class="container edit-status-request hidden ">
+    <h1>Editar status do pedido</h1>
+    <input type="hidden" name="id">
+    <form action="" class="formEdit" id="formEdit">
+      <input type="hidden" name="id">
+      <select name="statusRequest" id="">
+        <option value="processando">Processando</option>
+        <option value="em-construção">Em construção</option>
+        <option value="saindo-para-entrega">Saindo para entrega</option>
+        <option value="entrega-efetuada">Entrega efetuada</option>
+      </select>
+      <div>
+        <button type="submit" class="btn-edit">Alterar Status do Pedido</button>
+      </div>
+    </form>
+  </div>
   <script src="js/main.js"></script>
 </body>
 </html>

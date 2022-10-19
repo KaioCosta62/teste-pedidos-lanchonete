@@ -339,6 +339,20 @@ function addProducts(){
   })
 }
 
+function addEventEditRequest(){
+  const buttonsEdit = document.querySelectorAll(".edit-status")
+  const editStatus = document.querySelector('.edit-status-request')
+
+  console.log(buttonsEdit)
+  buttonsEdit.forEach((button) => {
+    button.addEventListener("click", function(e){
+      e.preventDefault()
+      editStatus.classList.remove('hidden')
+      const id = button.dataset.id
+      document.forms['formEdit'].id.value =id
+    })
+  })
+}
 function listRequests(){
   const list = document.querySelector('.requests')
   let htmlRequest = ''
@@ -354,11 +368,12 @@ function listRequests(){
             <p>Pedido: ${request.product}</p>
             <p>Preço: R$ ${request.price}</p>
             <p>Status do pedido: ${request.status}</p>
-            <a href = "#">[alterar status do pedido]</a>
+            <a href = "#" class = "edit-status" data-id = "${request._id}" data-status = "${request.status}">[alterar status do pedido]</a>
           </li>
         `
       })
       list.innerHTML = htmlRequest
+      addEventEditRequest()
     })
   })
 }
@@ -487,6 +502,36 @@ function addRequests(){
   })
 }
 
+function editStatus(){
+  const formEdit = document.querySelector('.formEdit')
+  formEdit.addEventListener("submit", function(e){
+    e.preventDefault()
+
+    const id = document.forms['formEdit']['id'].value
+    const status = document.forms['formEdit']['statusRequest'].value
+
+    fetch(`http://localhost:5000/api/requests/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        status
+      })
+    }).then((response) => {
+      response.json().then((data) => {
+        if(data.message === 'success'){
+          alert("Produto alterado com sucesso")
+          listRequests()
+        }else{
+          alert("Ops, houve um erro! Tente novamente!")
+        }
+      })
+      })
+
+  })
+}
+
 login()
 panel()
 listCustomers()
@@ -495,3 +540,4 @@ listProducts()
 addProducts()
 listRequests()
 addRequests()
+editStatus()
