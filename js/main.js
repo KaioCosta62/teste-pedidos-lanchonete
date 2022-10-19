@@ -1,4 +1,5 @@
 
+// Tela de login
 function login(){
   const defaultUser = 'admin'
   const defaultPassword = 'administrador123'
@@ -28,6 +29,7 @@ function login(){
   })
 }
 
+// Painel administrativo
 function panel(){
   const buttons = document.querySelectorAll('.panel a')
   const registerCustomer = document.querySelector('.register-customers')
@@ -69,6 +71,7 @@ function panel(){
   })
 }
 
+// Collection Clientes
 function addEventDeleteCustomer(){
   const buttonsDelete = document.querySelectorAll(".button-delete")
   buttonsDelete.forEach((button) => {
@@ -216,6 +219,10 @@ function addCustomers(){
   })
 }
 
+
+
+
+// Collection Produtos
 function addEventDeleteProduct(){
   const buttonsDelete = document.querySelectorAll('.list-products a')
   buttonsDelete.forEach((button) => {
@@ -339,6 +346,10 @@ function addProducts(){
   })
 }
 
+
+
+
+// Collection Pedidos
 function addEventEditRequest(){
   const buttonsEdit = document.querySelectorAll(".edit-status")
   const listRequests = document.querySelector('.list-requests')
