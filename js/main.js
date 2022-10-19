@@ -37,6 +37,7 @@ function panel(){
   const registerProducts = document.querySelector('.register-products')
   const listProducts = document.querySelector('.list-products')
   const registerRequests = document.querySelector('.register-requests')
+  const listRequests = document.querySelector('.list-requests')
   const panel = document.querySelector('.panel')
 
   buttons.forEach((button) => {
@@ -63,6 +64,10 @@ function panel(){
           break
         case 'register-requests':
           registerRequests.classList.remove('hidden')
+          panel.classList.add('hidden')
+          break
+        case 'list-requests':
+          listRequests.classList.remove('hidden')
           panel.classList.add('hidden')
           break
 
