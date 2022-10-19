@@ -11,7 +11,7 @@ body{
   justify-content: center;
   align-items: center;
   font-family: Arial, Helvetica, sans-serif;
-  padding: 0 2%;
+  padding: 20px 2%;
 }
 
 ul{
@@ -31,7 +31,8 @@ a{
 .list-customers,
 .register-customers,
 .register-products,
-.list-products{
+.list-products,
+.register-requests{
   text-align: center;
   width: 100%;
   border: 2px solid #f8a000;
@@ -57,7 +58,8 @@ a{
 
 .form-login label,
 .register-customers label,
-.register-products label{
+.register-products label,
+.register-requests label{
   display: block;
   margin-bottom: 15px;
   text-align: left;
@@ -70,7 +72,9 @@ a{
 .register-customers input,
 .register-customers button,
 .register-products input,
-.register-products button{
+.register-products button,
+.register-requests input,
+.register-requests button{
   width: 100%;
   height: 40px;
   padding-left: 10px;
@@ -80,7 +84,8 @@ a{
 
 .form-login button,
 .register-customers button,
-.register-products button{
+.register-products button,
+.register-requests button{
   margin-top: 15px;
   text-transform: uppercase;
   font-size: 1.2em;
@@ -150,13 +155,15 @@ button:hover{
 .list-customers h1,
 .register-customers h1,
 .register-products h1,
-.list-products h1{
+.list-products h1,
+.register-requests h1{
   margin-bottom: 20px;
   color: #881e3b;
 }
 
 .register-customers form,
-.register-products form{
+.register-products form,
+.register-requests form{
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -166,8 +173,17 @@ button:hover{
   display: none;
 }
 
+.register-requests select{
+  width: 100%;
+  height: 40px;
+  border: 3px solid #f8a000;
+  padding-left: 10px;
+  outline: 0;
+}
+
 input,
-button{
+button,
+select{
   border-radius: 10px;
 }
 

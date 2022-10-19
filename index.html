@@ -8,7 +8,7 @@
   <title>Kaions Burguer</title>
 </head>
 <body>
-  <div class="container login">
+  <div class="container login hidden">
     <h1>Login</h1>
     <form action="" id="form-login" class="form-login">
       <div>
@@ -98,6 +98,45 @@
   <div class="container list-products hidden">
     <h1>Listagem de Produtos</h1>
     <ul class="products"></ul>
+  </div>
+
+  <div class="container register-requests">
+    <h1>Cadastrar Pedidos</h1>
+    <form action="" id="registerRequests">
+      <div>
+        <label>Nome</label>
+        <input type="text" name="name" id="" placeholder="Digite o seu nome">
+        <span></span>
+      </div>
+      <div>
+        <label>Endereço</label>
+        <input type="text" name="address" id="" placeholder="Digite o seu endereço">
+        <span></span>
+      </div>
+      <div>
+        <label>Pedido</label>
+        <input type="text" name="request" id="" placeholder="Digite seu pedido">
+        <span></span>
+      </div>
+      <div>
+        <label>Preço</label>
+        <input type="text" name="price" id="" placeholder="Preço total">
+        <span></span>
+      </div>
+      <div>
+        <label>Status do Pedido</label>
+        <select name="statusRequest" id="">
+          <option value="processando">Processando</option>
+          <option value="em-construção">Em construção</option>
+          <option value="saindo-para-entrega">Saindo para entrega</option>
+          <option value="entrega-efetuada">Entrega efetuada</option>
+        </select>
+        <span></span>
+      </div>
+      <div>
+        <button type="submit">Cadastrar Pedido</button>
+      </div>
+    </form>
   </div>
   <script src="js/main.js"></script>
 </body>
