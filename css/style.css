@@ -32,7 +32,8 @@ a{
 .register-customers,
 .register-products,
 .list-products,
-.register-requests{
+.register-requests,
+.list-requests{
   text-align: center;
   width: 100%;
   border: 2px solid #f8a000;
@@ -145,7 +146,8 @@ button:hover{
 }
 
 .customers li,
-.products li{
+.products li,
+.requests li{
   font-size: 1.3em;
   color: #881e3b;
   border-bottom: 2px solid #f8a000;
@@ -156,7 +158,8 @@ button:hover{
 .register-customers h1,
 .register-products h1,
 .list-products h1,
-.register-requests h1{
+.register-requests h1,
+.list-requests h1{
   margin-bottom: 20px;
   color: #881e3b;
 }
