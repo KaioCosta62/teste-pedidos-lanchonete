@@ -341,18 +341,20 @@ function addProducts(){
 
 function addEventEditRequest(){
   const buttonsEdit = document.querySelectorAll(".edit-status")
+  const listRequests = document.querySelector('.list-requests')
   const editStatus = document.querySelector('.edit-status-request')
 
-  console.log(buttonsEdit)
   buttonsEdit.forEach((button) => {
     button.addEventListener("click", function(e){
       e.preventDefault()
       editStatus.classList.remove('hidden')
+      listRequests.classList.add('hidden')
       const id = button.dataset.id
-      document.forms['formEdit'].id.value =id
+      document.forms['formEdit'].id.value = id
     })
   })
 }
+
 function listRequests(){
   const list = document.querySelector('.requests')
   let htmlRequest = ''
@@ -504,6 +506,9 @@ function addRequests(){
 
 function editStatus(){
   const formEdit = document.querySelector('.formEdit')
+  const listRequests = document.querySelector('.list-requests')
+  const editStatus = document.querySelector('.edit-status-request')
+
   formEdit.addEventListener("submit", function(e){
     e.preventDefault()
 
@@ -522,6 +527,8 @@ function editStatus(){
       response.json().then((data) => {
         if(data.message === 'success'){
           alert("Produto alterado com sucesso")
+          editStatus.classList.add('hidden')
+          listRequests.classList.remove('hidden')
           listRequests()
         }else{
           alert("Ops, houve um erro! Tente novamente!")
