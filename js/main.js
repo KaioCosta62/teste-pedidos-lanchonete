@@ -562,6 +562,14 @@ function exit(){
     })
   })
 }
+
+function openMenu(){
+  const iconMenu = document.querySelector('.menu')
+
+  iconMenu.addEventListener("click", function(){
+    document.querySelector('header ul').classList.toggle('open')
+  })
+}
 login()
 panel()
 listCustomers()
@@ -572,3 +580,4 @@ listRequests()
 addRequests()
 editStatus()
 exit()
+openMenu()

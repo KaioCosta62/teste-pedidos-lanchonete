@@ -14,8 +14,28 @@ header{
 }
 
 header ul{
-  display: flex;
+  display: none;
   gap: 30px;
+  width: 40vh;
+  height: 110vh;
+  background-color: #ededed;
+  position: absolute;
+  right: 0;
+  padding: 0;
+}
+
+header ul.open{
+  display: block;
+}
+
+header ul li{
+  padding: 15px;
+  margin-top: 30px;
+}
+
+header ul a{
+  margin-bottom: 20px;
+  font-size: 1.3em;
 }
 
 header a{
