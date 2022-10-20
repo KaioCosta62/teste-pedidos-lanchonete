@@ -83,8 +83,8 @@ function addEventDeleteCustomer(){
       }).then((response) => {
         response.json().then((data) => {
           if(data.message === 'success'){
-            alert("Cliente removido com sucesso")
             listCustomers()
+            alert("Cliente removido com sucesso")
           }else{
             alert("Ops, houve um erro! Tente novamente!")
           }
@@ -102,7 +102,7 @@ function listCustomers(){
       data.forEach((customer) => {
         htmlCustomer += `
           <li>
-            ${customer.name} | ${customer.age} anos | ${customer.email}
+            ${customer.name} | ${customer.email}
             <a href = "#" class = "button-delete"  data-id = "${customer._id}">[excluir]</a>
           </li>
         `
@@ -299,7 +299,6 @@ function verifyCampusAddProducts(name, price){
 
 function addProducts(){
   const formRegister = document.querySelector('#registerProducts')
-
   formRegister.addEventListener("submit", function(e){
     e.preventDefault()
 
@@ -322,7 +321,6 @@ function addProducts(){
           if(data.message === 'success'){
             formRegister.reset()
             alert("Produto cadastrado com sucesso")
-            listProducts()
           }else{
             alert("Ops, não foi possível cadastrar o produto! Tente novamente!")
           }
@@ -341,6 +339,7 @@ function addEventEditRequest(){
   const listRequests = document.querySelector('.list-requests')
   const editStatus = document.querySelector('.edit-status-request')
 
+  console.log(buttonsEdit)
   buttonsEdit.forEach((button) => {
     button.addEventListener("click", function(e){
       e.preventDefault()
@@ -358,15 +357,15 @@ function listRequests(){
 
   fetch('http://localhost:5000/api/requests').then((response) => {
     response.json().then((data) => {
-      data.forEach((request) => {
+      data.requests.forEach((request) => {
         htmlRequest += `
-          <li> 
-            <p>Código do Cliente: ${request.codeCustomer}</p>
-            <p>Código do Produto: ${request.codeProduct}</p>
-            <p>Data de criação: ${request.dataCriation}</p>
-            <p>Status do pedido: ${request.status}</p>
-            <a href = "#" class = "edit-status" data-id = "${request._id}" data-status = "${request.status}">[alterar status do pedido]</a>
-          </li>
+        <li> 
+          <p>Código do Cliente: ${request.codeCustomer}</p>
+          <p>Código do Produto: ${request.codeProduct}</p>
+          <p>Data de criação: ${request.dataCriation}</p>
+          <p>Status do pedido: ${request.status}</p>
+          <a href = "#" class = "edit-status" data-id = "${request._id}" data-status = "${request.status}">[alterar status do pedido]</a>
+        </li>
         `
       })
       list.innerHTML = htmlRequest
@@ -431,7 +430,37 @@ function verifyCampusAddRequests(codeCustomer, codeProduct, dataCriation, status
 
 function addRequests(){
   const formRegister = document.querySelector('.registerRequests')
-  
+  const codeCustomer = document.querySelector('.codeCustomer')
+  const codeProducts = document.querySelector('.codeProduct')
+  let optionsCustomers = ''
+  let optionProducts = ''
+
+  fetch('http://localhost:5000/api/requests').then((response) => {
+    response.json().then((data) => {
+      data.customers.forEach((customer) => {
+        optionsCustomers += `
+          <option>${customer.name}</option>
+        `
+      })
+      codeCustomer.innerHTML = optionsCustomers
+    })
+
+  })
+
+  fetch('http://localhost:5000/api/requests').then((response) => {
+    response.json().then((data) => {
+      data.products.forEach((product) => {
+        optionProducts += `
+          <option>${product.name}</option>
+        `
+      })
+
+      
+      codeProducts.innerHTML = optionProducts
+    })
+  })
+
+ 
   formRegister.addEventListener("submit", function(e){
     e.preventDefault()
 
@@ -441,6 +470,8 @@ function addRequests(){
     const status = document.forms['registerRequests']['statusRequest'].value
     const verifyForm = verifyCampusAddRequests(codeCustomer, codeProduct, dataCriation, status)
 
+ 
+    
     if(!verifyForm){
       fetch('http://localhost:5000/api/requests', {
         method: 'POST',
@@ -458,12 +489,14 @@ function addRequests(){
           if(data.message === 'success'){
             formRegister.reset()
             alert("Pedido cadastrado com sucesso!")
+            listRequests()
           }else{
             alert("Ops, ocorreu um erro! Tente novamente!")
           }
         })
       })
     }
+    
   })
 }
 
@@ -496,7 +529,7 @@ function editStatus(){
           alert("Ops, houve um erro! Tente novamente!")
         }
       })
-      })
+    })
   })
 }
 
@@ -519,6 +552,7 @@ function openMenu(){
     document.querySelector('header ul').classList.toggle('open')
   })
 }
+
 login()
 panel()
 listCustomers()
