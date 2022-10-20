@@ -541,13 +541,11 @@ function editStatus(){
           alert("Produto alterado com sucesso")
           listRequests.classList.remove('hidden')
           editStatus.classList.add('hidden')
-          listRequests()
         }else{
           alert("Ops, houve um erro! Tente novamente!")
         }
       })
       })
-
   })
 }
 
