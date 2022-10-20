@@ -114,7 +114,7 @@ function listCustomers(){
   })
 }
 
-function verifyCampusAddCustomers(name, age, email, password){
+function verifyCampusAddCustomers(name, email, phone, address){
   let verifyError = false
 
   const inputName = document.forms['registerCustomer']['name']
@@ -130,20 +130,6 @@ function verifyCampusAddCustomers(name, age, email, password){
     const span = inputName.nextElementSibling
     span.innerHTML = ''
   }
-
-
-  const inputAge = document.forms['registerCustomer']['age']
-  if(!age){
-    verifyError = true
-    inputAge.classList.add('errorInput')
-    const span = inputAge.nextElementSibling
-    span.innerHTML = 'Por favor, preencha sua idade'
-  }else{
-    inputAge.classList.remove('errorInput')
-    const span = inputAge.nextElementSibling
-    span.innerHTML = ''
-  }
-  
 
   const inputEmail = document.forms['registerCustomer']['email']
   const regexEmail = /\S+@\S+\.\S+/
@@ -161,15 +147,27 @@ function verifyCampusAddCustomers(name, age, email, password){
   }
 
 
-  const inputPassword = document.forms['registerCustomer']['password']
-  if(!password || password.length < 6){
+  const inputPhone = document.forms['registerCustomer']['phone']
+  if(!phone){
     verifyError = true
-    inputPassword.classList.add('errorInput')
-    const span = inputPassword.nextElementSibling
-    span.innerHTML = 'Por favor, preencha o campo de senha'
+    inputPhone.classList.add('errorInput')
+    const span = inputPhone.nextElementSibling
+    span.innerHTML = 'Por favor, informe seu telefone de contato'
   }else{
-    inputPassword.classList.remove('errorInput')
-    const span = inputPassword.nextElementSibling
+    inputPhone.classList.remove('errorInput')
+    const span = inputPhone.nextElementSibling
+    span.innerHTML = ''
+  }
+  
+  const inputAddress = document.forms['registerCustomer']['address']
+  if(!address){
+    verifyError = true
+    inputAddress.classList.add('errorInput')
+    const span = inputAddress.nextElementSibling
+    span.innerHTML = 'Por favor, preencha o seu endereço'
+  }else{
+    inputAddress.classList.remove('errorInput')
+    const span = inputAddress.nextElementSibling
     span.innerHTML = ''
   }
   
@@ -183,10 +181,11 @@ function addCustomers(){
     e.preventDefault()
     
     const name = document.forms['registerCustomer']['name'].value
-    const age = document.forms['registerCustomer']['age'].value
     const email = document.forms['registerCustomer']['email'].value
-    const password = document.forms['registerCustomer']['password'].value
-    const verifyForm = verifyCampusAddCustomers(name, age, email, password)
+    const phone = document.forms['registerCustomer']['phone'].value
+    const address = document.forms['registerCustomer']['address'].value
+
+    const verifyForm = verifyCampusAddCustomers(name, email, phone, address)
 
     
     if(!verifyForm){
@@ -197,9 +196,9 @@ function addCustomers(){
         },
         body: JSON.stringify({
           name,
-          age,
           email,
-          password
+          phone,
+          address
         })
       }).then((response) => {
         response.json().then((data) => {
