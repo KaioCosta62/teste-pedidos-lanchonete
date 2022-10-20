@@ -123,37 +123,28 @@
       <h1>Cadastrar Pedidos</h1>
       <form action="" id="registerRequests" class="registerRequests">
         <div>
-          <label>Nome</label>
-          <input type="text" name="name" id="" placeholder="Digite o seu nome">
+          <label>Código do cliente</label>
+          <input type="text" name="codeCustomer" id="" placeholder="Digite o código do cliente">
           <span></span>
         </div>
         <div>
-          <label>Endereço</label>
-          <input type="text" name="address" id="" placeholder="Digite o seu endereço">
+          <label>Código do produto</label>
+          <input type="text" name="codeProduct" id="" placeholder="Digite o código do produto">
           <span></span>
         </div>
         <div>
-          <label>Telefone</label>
-          <input type="text" name="phone" id="" placeholder="Digite o seu telefone de contato">
-          <span></span>
-        </div>
-        <div>
-          <label>Pedido</label>
-          <input type="text" name="product" id="" placeholder="Digite seu pedido">
-          <span></span>
-        </div>
-        <div>
-          <label>Preço</label>
-          <input type="text" name="price" id="" placeholder="Preço total">
+          <label>Data de criação</label>
+          <input type="text" name="dataCriation" id="" placeholder="Informe a data de criação dd/mm/aaaa">
           <span></span>
         </div>
         <div>
           <label>Status do Pedido</label>
           <select name="statusRequest" id="">
-            <option value="processando">Processando</option>
-            <option value="em-construção">Em construção</option>
-            <option value="saindo-para-entrega">Saindo para entrega</option>
-            <option value="entrega-efetuada">Entrega efetuada</option>
+            <option value="processando">Pendente</option>
+            <option value="em-construção">Em preparo</option>
+            <option value="saindo-para-entrega">Em entrega</option>
+            <option value="entrega-efetuada">Entregue</option>
+            <option value="entrega-cancelada">Cancelado</option>
           </select>
           <span></span>
         </div>
@@ -177,10 +168,11 @@
       <form action="" class="formEdit" id="formEdit">
         <input type="hidden" name="id">
         <select name="statusRequest" id="">
-          <option value="processando">Processando</option>
-          <option value="em-construção">Em construção</option>
-          <option value="saindo-para-entrega">Saindo para entrega</option>
-          <option value="entrega-efetuada">Entrega efetuada</option>
+          <option value="processando">Pendente</option>
+          <option value="em-construção">Em preparo</option>
+          <option value="saindo-para-entrega">Em entrega</option>
+          <option value="entrega-efetuada">Entregue</option>
+          <option value="entrega-cancelada">Cancelado</option>
         </select>
         <div>
           <button type="submit" class="btn-edit">Alterar Status do Pedido</button>

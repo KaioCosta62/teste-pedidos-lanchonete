@@ -253,7 +253,7 @@ function listProducts(){
       data.forEach((product) => {
         htmlProduct += `
         <li>
-         ${product.name} | R$ ${product.price} | ${product.description}
+         ${product.name} | R$ ${product.price}
          <a href = "#" class = "button-delete" data-id = "${product._id}">[excluir]</a>
         </li>     
         `
@@ -361,11 +361,9 @@ function listRequests(){
       data.forEach((request) => {
         htmlRequest += `
           <li> 
-            <p>Nome: ${request.name}</p>
-            <p>Endereço: ${request.address}</p>
-            <p>Telefone: ${request.phone}</p>
-            <p>Pedido: ${request.product}</p>
-            <p>Preço: R$ ${request.price}</p>
+            <p>Código do Cliente: ${request.codeCustomer}</p>
+            <p>Código do Produto: ${request.codeProduct}</p>
+            <p>Data de criação: ${request.dataCriation}</p>
             <p>Status do pedido: ${request.status}</p>
             <a href = "#" class = "edit-status" data-id = "${request._id}" data-status = "${request.status}">[alterar status do pedido]</a>
           </li>
@@ -377,69 +375,42 @@ function listRequests(){
   })
 }
 
-function verifyCampusAddRequests(name, address, phone, request, price, status){
+function verifyCampusAddRequests(codeCustomer, codeProduct, dataCriation, status){
   let verifyError = false
 
-  const inputName = document.forms['registerRequests']['name']
-  const regexName = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
-  const verifyName = regexName.test(name)
-
-  if(!verifyName){
+  const inputCodeCustomer = document.forms['registerRequests']['codeCustomer']
+  if(!codeCustomer){
     verifyError = true
-    inputName.classList.add('errorInput')
-    const span = inputName.nextElementSibling
-    span.innerHTML = 'Insira o seu nome'
+    inputCodeCustomer.classList.add('errorInput')
+    const span = inputCodeCustomer.nextElementSibling
+    span.innerHTML = 'Insira o código do cliente'
   }else{
-    inputName.classList.remove('errorInput')
-    const span = inputName.nextElementSibling
+    inputCodeCustomer.classList.remove('errorInput')
+    const span = inputCodeCustomer.nextElementSibling
     span.innerHTML = ''
   }
 
-  const inputAddress = document.forms['registerRequests']['address']
-  if(!address){
+  const inputCodeProduct = document.forms['registerRequests']['codeProduct']
+  if(!codeProduct){
     verifyError = true
-    inputAddress.classList.add('errorInput')
-    const span = inputAddress.nextElementSibling
-    span.innerHTML = 'Insira o seu endereço'
+    inputCodeProduct.classList.add('errorInput')
+    const span = inputCodeProduct.nextElementSibling
+    span.innerHTML = 'Insira o código do produto'
   }else{
-    inputAddress.classList.remove('errorInput')
-    const span = inputAddress.nextElementSibling
+    inputCodeProduct.classList.remove('errorInput')
+    const span = inputCodeProduct.nextElementSibling
     span.innerHTML = ''
   }
 
-  const inputPhone = document.forms['registerRequests']['phone']
-  if(!phone){
+  const inputDataCriation = document.forms['registerRequests']['dataCriation']
+  if(!dataCriation){
     verifyError = true
-    inputPhone.classList.add('errorInput')
-    const span = inputPhone.nextElementSibling
-    span.innerHTML = 'Insira o seu telefone de contato'
+    inputDataCriation.classList.add('errorInput')
+    const span = inputDataCriation.nextElementSibling
+    span.innerHTML = 'Insira a data de criação do produto'
   }else{
-    inputPhone.classList.remove('errorInput')
-    const span = inputPhone.nextElementSibling
-    span.innerHTML = ''
-  }
-
-  const inputRequest =  document.forms['registerRequests']['product']
-  if(!request){
-    verifyError = true
-    inputRequest.classList.add('errorInput')
-    const span = inputRequest.nextElementSibling
-    span.innerHTML = 'Insira o seu pedido'
-  }else{
-    inputRequest.classList.remove('errorInput')
-    const span = inputRequest.nextElementSibling
-    span.innerHTML = ''
-  }
-
-  const inputPrice = document.forms['registerRequests']['price']
-  if(!price){
-    verifyError = true
-    inputPrice.classList.add('errorInput')
-    const span = inputPrice.nextElementSibling
-    span.innerHTML = 'Insira o valor do pedido'
-  }else{
-    inputPrice.classList.remove('errorInput')
-    const span = inputPrice.nextElementSibling
+    inputDataCriation.classList.remove('errorInput')
+    const span = inputDataCriation.nextElementSibling
     span.innerHTML = ''
   }
 
@@ -464,15 +435,12 @@ function addRequests(){
   formRegister.addEventListener("submit", function(e){
     e.preventDefault()
 
-    const name = document.forms['registerRequests']['name'].value
-    const address = document.forms['registerRequests']['address'].value
-    const product = document.forms['registerRequests']['product'].value
-    const phone = document.forms['registerRequests']['phone'].value
-    const price = document.forms['registerRequests']['price'].value
+    const codeCustomer = document.forms['registerRequests']['codeCustomer'].value
+    const codeProduct = document.forms['registerRequests']['codeProduct'].value
+    const dataCriation = document.forms['registerRequests']['dataCriation'].value
     const status = document.forms['registerRequests']['statusRequest'].value
-    const verifyForm = verifyCampusAddRequests(name, address, phone, product, price, status)
+    const verifyForm = verifyCampusAddRequests(codeCustomer, codeProduct, dataCriation, status)
 
-    console.log(verifyForm)
     if(!verifyForm){
       fetch('http://localhost:5000/api/requests', {
         method: 'POST',
@@ -480,11 +448,9 @@ function addRequests(){
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          name,
-          address,
-          phone,
-          product,
-          price,
+          codeCustomer,
+          codeProduct,
+          dataCriation,
           status
         })
       }).then((response) => {
