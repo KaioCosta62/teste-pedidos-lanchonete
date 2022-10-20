@@ -265,7 +265,7 @@ function listProducts(){
   })
 }
 
-function verifyCampusAddProducts(name, price, description){
+function verifyCampusAddProducts(name, price){
   let verifyError = false
 
   const inputName = document.forms['registerProducts']['name']
@@ -294,18 +294,6 @@ function verifyCampusAddProducts(name, price, description){
     span.innerHTML = ''
   }
 
-  const inputDescription = document.forms['registerProducts']['description']
-  if(!description){
-    verifyError = true
-    inputDescription.classList.add('errorInput')
-    const span = inputDescription.nextElementSibling
-    span.innerHTML = 'Insira a descrição do produto'
-  }else{
-    inputDescription.classList.remove('errorInput')
-    const span = inputDescription.nextElementSibling
-    span.innerHTML = ''
-  }
-
   return verifyError
 }
 
@@ -317,8 +305,7 @@ function addProducts(){
 
     const name = document.forms['registerProducts']['name'].value
     const price = document.forms['registerProducts']['price'].value
-    const description = document.forms['registerProducts']['description'].value
-    const verifyForm = verifyCampusAddProducts(name, price, description)
+    const verifyForm = verifyCampusAddProducts(name, price)
 
     if(!verifyForm){
       fetch('http://localhost:5000/api/products', {
@@ -328,8 +315,7 @@ function addProducts(){
         },
         body: JSON.stringify({
           name,
-          price,
-          description
+          price
         })
       }).then((response) => {
         response.json().then((data) => {
