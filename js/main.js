@@ -112,7 +112,7 @@ function addEventDeleteCustomer(){
       e.preventDefault()
       const id = this.dataset.id
 
-      fetch(`http://localhost:5000/api/customers/${id}`, {
+      fetch(`http://127.0.0.1:5000/api/customers/${id}`, {
         method: 'DELETE'
       }).then((response) => {
         response.json().then((data) => {
@@ -131,7 +131,7 @@ function addEventDeleteCustomer(){
 function listCustomers(){
   const list = document.querySelector('.customers')
   let htmlCustomer = ''
-  fetch('http://localhost:5000/api/customers').then(response => {
+  fetch('http://127.0.0.1:5000/api/customers').then(response => {
     response.json().then(data => {
       data.forEach((customer) => {
         htmlCustomer += `
@@ -223,7 +223,7 @@ function addCustomers(){
 
     
     if(!verifyForm){
-      fetch('http://localhost:5000/api/customers', {
+      fetch('http://127.0.0.1:5000/api/customers', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -262,7 +262,7 @@ function addEventDeleteProduct(){
     button.addEventListener("click", function(e){
       e.preventDefault()
       const id = button.dataset.id
-      fetch(`http://localhost:5000/api/products/${id}`, {
+      fetch(`http://127.0.0.1:5000/api/products/${id}`, {
         method: 'DELETE'
       }).then((response) => {
         response.json().then((data) => {
@@ -282,7 +282,7 @@ function listProducts(){
   const list = document.querySelector('.products')
   let htmlProduct = ''
 
-  fetch('http://localhost:5000/api/products').then((resolve) => {
+  fetch('http://127.0.0.1:5000/api/products').then((resolve) => {
     resolve.json().then((data) => {
       data.forEach((product) => {
         htmlProduct += `
@@ -341,7 +341,7 @@ function addProducts(){
     const verifyForm = verifyCampusAddProducts(name, price)
 
     if(!verifyForm){
-      fetch('http://localhost:5000/api/products', {
+      fetch('http://127.0.0.1:5000/api/products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -389,7 +389,7 @@ function listRequests(){
   const list = document.querySelector('.requests')
   let htmlRequest = ''
 
-  fetch('http://localhost:5000/api/requests').then((response) => {
+  fetch('http://127.0.0.1:5000/api/requests').then((response) => {
     response.json().then((data) => {
       data.requests.forEach((request) => {
         htmlRequest += `
@@ -469,7 +469,7 @@ function addRequests(){
   let optionsCustomers = ''
   let optionProducts = ''
 
-  fetch('http://localhost:5000/api/requests').then((response) => {
+  fetch('http://127.0.0.1:5000/api/requests').then((response) => {
     response.json().then((data) => {
       data.customers.forEach((customer) => {
         optionsCustomers += `
@@ -481,7 +481,7 @@ function addRequests(){
 
   })
 
-  fetch('http://localhost:5000/api/requests').then((response) => {
+  fetch('http://127.0.0.1:5000/api/requests').then((response) => {
     response.json().then((data) => {
       data.products.forEach((product) => {
         optionProducts += `
@@ -507,7 +507,7 @@ function addRequests(){
  
     
     if(!verifyForm){
-      fetch('http://localhost:5000/api/requests', {
+      fetch('http://127.0.0.1:5000/api/requests', {
         method: 'POST',
         headers:{
           'Content-Type': 'application/json'
@@ -545,7 +545,7 @@ function editStatus(){
     const id = document.forms['formEdit']['id'].value
     const status = document.forms['formEdit']['statusRequest'].value
 
-    fetch(`http://localhost:5000/api/requests/${id}`, {
+    fetch(`http://127.0.0.1:5000/api/requests/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
