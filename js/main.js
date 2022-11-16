@@ -38,6 +38,7 @@ function panel(){
   const registerRequests = document.querySelector('.register-requests')
   const listRequests = document.querySelector('.list-requests')
 
+  
   buttons.forEach((button) => {
     button.addEventListener("click", function(e){
       e.preventDefault()
@@ -46,28 +47,61 @@ function panel(){
       
       switch(option){
         case 'register-customers':
+          listCustomers.classList.add('hidden')
+          registerProducts.classList.add('hidden')
+          listProducts.classList.add('hidden')
+          registerRequests.classList.add('hidden')
+          listRequests.classList.add('hidden')
           registerCustomer.classList.remove('hidden')
           break
         case 'list-customers':
+          registerProducts.classList.add('hidden')
+          listProducts.classList.add('hidden')
+          registerRequests.classList.add('hidden')
+          listRequests.classList.add('hidden')
+          registerCustomer.classList.add('hidden')
           listCustomers.classList.remove('hidden')
           break
         case 'register-products':
+          listProducts.classList.add('hidden')
+          registerRequests.classList.add('hidden')
+          listRequests.classList.add('hidden')
+          registerCustomer.classList.add('hidden')
+          listCustomers.classList.add('hidden')
           registerProducts.classList.remove('hidden')
           break
         case 'list-products':
+          registerRequests.classList.add('hidden')
+          listRequests.classList.add('hidden')
+          registerCustomer.classList.add('hidden')
+          listCustomers.classList.add('hidden')
+          registerProducts.classList.add('hidden')
           listProducts.classList.remove('hidden')
           break
         case 'register-requests':
+          listRequests.classList.add('hidden')
+          registerCustomer.classList.add('hidden')
+          listCustomers.classList.add('hidden')
+          registerProducts.classList.add('hidden')
+          listProducts.classList.add('hidden')
           registerRequests.classList.remove('hidden')
           break
         case 'list-requests':
+          registerCustomer.classList.add('hidden')
+          listCustomers.classList.add('hidden')
+          registerProducts.classList.add('hidden')
+          listProducts.classList.add('hidden')
+          registerRequests.classList.add('hidden')
           listRequests.classList.remove('hidden')
           break
 
       }
+
     
     })
   })
+
+ 
 }
 
 // Collection Clientes
